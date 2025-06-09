@@ -17,9 +17,13 @@ import { twMerge } from "tailwind-merge";
 export type Join<T, K> = T & K;
 
 // Context for sharing state between Tooltip and its children
-const TooltipContext = createContext({
+const TooltipContext = createContext<{
+	isVisible: boolean;
+	setIsVisible: (visible: boolean) => void;
+	contentRef: RefObject<HTMLParagraphElement | null> | null;
+}>({
 	isVisible: false,
-	setIsVisible: (visible: boolean) => {},
+	setIsVisible: () => {},
 	contentRef: null as RefObject<HTMLParagraphElement | null> | null,
 });
 type Bound = "top" | "bottom" | "left" | "right";
